@@ -193,14 +193,19 @@ export default {
 
   watch:{
     plPrice__c(){
-      this.plTotalAmount__c = Number(this.plPrice__c) * Number(this.plAmount__c);
-    },
-    plAmount__c(){
-      this.plTotalAmount__c = Number(this.plPrice__c) * Number(this.plAmount__c);
-    },
+      const plPrice__c = String(this.plPrice__c);
+      if (plPrice__c.indexOf(',') !== -1){
+        const price = this.plPrice__c.replace(/\,/g, '');
+        this.plTotalAmount__c = Number(price) * Number(this.plAmount__c);
+      } else this.plTotalAmount__c = Number(this.plPrice__c) * Number(this.plAmount__c);
 
-    // this.plTotalAmount__c = this.plTotalAmount__c.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
-  },
+      //？：表示括号只是起分隔作用，不将括号中匹配的内容存入内存中
+      // 前瞻：exp1(?=exp2) 查找exp2前面的exp1
+      // this.plPrice__c = this.plPrice__c.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
+      this.plPrice__c = this.plPrice__c.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
+      this.plTotalAmount__c = this.plTotalAmount__c.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
+
+    },
 
   mounted() {
     let pageName = sessionStorage.getItem("aPLShinseisyaName");
