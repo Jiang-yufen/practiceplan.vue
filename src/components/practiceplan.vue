@@ -302,25 +302,24 @@ export default {
     plNameInput(){
 
     },
-    plPrice__cInput(){
+    plPrice__cInput() {
+      console.log("问题出在方法plPrice__cInput");
       //数字だけ入力できる。
-      this.plPrice__c = this.plPrice__c.replace(/[^\d]/g, "")
+      this.rowlistTwo[indexTwo].plPrice__c = this.rowlistTwo[indexTwo].plPrice__c.replace(/[^\d]/g, "")
       //整数の前の0は保留しない。
-      if (this.plPrice__c != "") {
-        this.plPrice__c = parseFloat(this.plPrice__c);
+      if (this.rowlistTwo[indexTwo].plPrice__c != "") {
+        this.rowlistTwo[indexTwo].plPrice__c = parseFloat(this.plPrice__c);
       }
       //9,999,999,999内の数字を入力できる。
       if (
-        this.plPrice__c < 0 ||
-        this.plPrice__c > 9999999999
+        this.rowlistTwo[indexTwo].plPrice__c < 0 ||
+        this.rowlistTwo[indexTwo].plPrice__c > 9999999999
       ) {
         this.plPrice__cF = true;
       } else {
         this.plPrice__cF = false;
       }
-      //？：表示括号只是起分隔作用，不将括号中匹配的内容存入内存中
-      // 前瞻：exp1(?=exp2) 查找exp2前面的exp1
-      this.plPrice__c = this.plPrice__c.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,')
+      console.log("方法plPrice__cInput运行完了");
     },
     plAmount__cInput(){
       //数字だけ入力できる。
