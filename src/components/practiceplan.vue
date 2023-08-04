@@ -17,24 +17,22 @@
       </tr>
       <tr v-for="(item, index) in rowlist" :key="index">
         <td class="td-2" type="index" >
-<!--          :prop="'rowlist.'+index+'.bangou'"-->
-<!--          v-model="item.bangou"-->
-          <input >
+          <input v-model="rowlist[index].bangou">
 <!--            {{(queryParams.pageNum-1)*queryParams.pageSize+scope.$index+1}}-->
         </td>
         <td class="td-2">
-            <input type="text" v-model="plJisshiKomokuc" @input="plJisshiKomokucInput">
+            <input type="text" v-model="rowlist[index].plJisshiKomokuc" @input="plJisshiKomokucInput">
             <span class="error-message" v-if="plJisshiKomokucF"
             >実施項目1-1は255文字以内で入力してください。</span>
         </td>
         <td class="td-2">
-            <input type="text" v-model="plHyoukaKijunc" @input="plHyoukaKijuncInput">
+            <input type="text" v-model="rowlist[index].plHyoukaKijunc" @input="plHyoukaKijuncInput">
             <span class="error-message" v-if="plHyoukaKijuncF"
             >評価基準1-1は80文字以内で入力してください。
             </span>
         </td>
         <td class="td-2">
-            <select v-model="plHyoukaHindoc" class="tdSelect">
+            <select v-model="rowlist[index].plHyoukaHindoc" class="tdSelect">
               <option value="">選択してください</option>
               <option value="毎月">毎月</option>
               <option value="半年">半年</option>
@@ -43,7 +41,7 @@
         </td>
         <td class="td-2">
           <div>
-              &nbsp;&nbsp;<select v-model="plJisshiJikiNendoc" class="twoSelect">
+              &nbsp;&nbsp;<select v-model="rowlist[index].plJisshiJikiNendoc" class="twoSelect">
                 <option value="">選択してください</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -57,7 +55,7 @@
           </div>
           <div>
               &nbsp;&nbsp;-&nbsp;&nbsp;
-                <select v-model="plJisshiJikiShihankic" class="twoSelect">
+                <select v-model="rowlist[index].plJisshiJikiShihankic" class="twoSelect">
                   <option value="">選択してください</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
